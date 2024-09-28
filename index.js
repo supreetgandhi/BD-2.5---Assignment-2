@@ -199,9 +199,9 @@ function filterByIndustry(stock, industry) {
 app.get('/stocks/sort/pricing', (req, res) => {
   let stocksCopy = stocks.slice();
   let pricing = req.query.pricing;
-  if (pricing.toLowerCase() === 'low-to-high')
+  if (pricing.toLowerCase() === 'low to high')
     stocksCopy.sort(sortStockPriceByAscendingOrder);
-  else stocksCopy.sort(sortStockPriceByDescendingOrder);
+  else if (pricing.toLowerCase() === 'high to low') stocksCopy.sort(sortStockPriceByDescendingOrder);
 
   res.json(stocksCopy);
 });
@@ -209,9 +209,9 @@ app.get('/stocks/sort/pricing', (req, res) => {
 app.get('/stocks/sort/growth', (req, res) => {
   let stocksCopy = stocks.slice();
   let growth = req.query.growth;
-  if (growth.toLowerCase() === 'low-to-high')
+  if (growth.toLowerCase() === 'low to high')
     stocksCopy.sort(sortGrowthInDescendingOrder);
-  else stocksCopy.sort(sortGrowthInAscendingOrder);
+  else if (growth.toLowerCase() === 'high to low') stocksCopy.sort(sortGrowthInAscendingOrder);
   res.json(stocksCopy);
 });
 
